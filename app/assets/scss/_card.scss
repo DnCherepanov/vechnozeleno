@@ -1,0 +1,53 @@
+.discount {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.card {
+  border-radius: $radius-large;
+  border: 1px solid $base-color-light;
+  box-shadow: none;
+
+  .card-image {
+    border-radius: $radius-large;
+    img {
+      border-radius: $radius-large;
+    }
+  }
+
+  &.has-table {
+    .card-content {
+      padding: 0;
+    }
+    .b-table {
+      border-radius: $radius-large;
+    }
+  }
+
+  &.is-card-widget {
+    .card-content {
+      padding: $default-padding * 0.5;
+    }
+  }
+
+  .card-header {
+    border-bottom: 1px solid $base-color-light;
+    box-shadow: none;
+  }
+
+  .is-widget-icon {
+    .icon {
+      width: 5rem;
+      height: 5rem;
+    }
+  }
+
+  .is-widget-label {
+    .subtitle {
+      color: $grey;
+    }
+  }
+}
+.card:not(:last-child) {
+  margin-bottom: $default-padding;
+}

@@ -1,0 +1,92 @@
+
+/*
+* https://remixicon.com
+* https://github.com/Remix-Design/RemixIcon
+* Copyright RemixIcon.com
+* Released under the Apache License Version 2.0
+*/
+
+@font-face {
+    font-family: "remixicon";
+    src: url('remixicon.eot?t=1619663469482'); /* IE9*/
+    src: url('remixicon.eot?t=1619663469482#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url("remixicon.woff2?t=1619663469482") format("woff2"),
+    url("remixicon.woff?t=1619663469482") format("woff"),
+    url('remixicon.ttf?t=1619663469482') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('remixicon.svg?t=1619663469482#remixicon') format('svg'); /* iOS 4.1- */
+    font-display: swap;
+}
+
+[class^="ri-"], [class*="ri-"] {
+    font-family: 'remixicon' !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.ri-lg { font-size: 1.3333em; line-height: 0.75em; vertical-align: -.0667em; }
+.ri-xl { font-size: 1.5em; line-height: 0.6666em; vertical-align: -.075em; }
+.ri-xxs { font-size: .5em; }
+.ri-xs { font-size: .75em; }
+.ri-sm { font-size: .875em }
+.ri-1x { font-size: 1em; }
+.ri-2x { font-size: 2em; }
+.ri-3x { font-size: 3em; }
+.ri-4x { font-size: 4em; }
+.ri-5x { font-size: 5em; }
+.ri-6x { font-size: 6em; }
+.ri-7x { font-size: 7em; }
+.ri-8x { font-size: 8em; }
+.ri-9x { font-size: 9em; }
+.ri-10x { font-size: 10em; }
+.ri-fw { text-align: center; width: 1.25em; }
+
+.ri-bold:before { content: "\ead1"; }
+.ri-italic:before { content: "\ee6b"; }
+.ri-strikethrough:before { content: "\f1ab"; }
+.ri-underline:before { content: "\f244"; }
+.ri-list-unordered:before { content: "\eebe"; }
+.ri-list-ordered:before { content: "\eebb"; }
+.ri-separator:before { content: "\f0de"; }
+.ri-double-quotes-r:before { content: "\ec52"; }
+.ri-arrow-go-forward-line:before { content: "\ea5a"; }
+.ri-arrow-go-back-line:before { content: "\ea58"; }
+.ri-moon-clear-line:before { content: "\ef6f"; }
+.ri-sun-fill:before { content: "\f1bc"; }
+.ri-folders-line:before { content: "\ed8a"; }
+.ri-bar-chart-2-line:before { content: "\ea96"; }
+.ri-search-line:before { content: "\f0d1"; }
+.ri-store-2-line:before { content: "\f1a5"; }
+.ri-facebook-circle-fill:before { content: "\ecba"; }
+.ri-shopping-bag-line:before { content: "\f118"; }
+.ri-add-line:before { content: "\ea13"; }
+.ri-subtract-line:before { content: "\f1af"; }
+.ri-delete-bin-line:before { content: "\ec2a"; }
+.ri-newspaper-line:before { content: "\ef8f"; }
+.ri-arrow-left-line:before { content: "\ea60"; }
+.ri-questionnaire-line:before { content: "\f048"; }
+.ri-logout-box-r-line:before { content: "\eeda"; }
+.ri-pencil-line:before { content: "\efe0"; }
+.ri-more-2-fill:before { content: "\ef76"; }
+.ri-menu-fold-line:before { content: "\ef3d"; }
+.ri-menu-unfold-line:before { content: "\ef40"; }
+.ri-arrow-right-s-line:before { content: "\ea6e"; }
+.ri-arrow-left-s-line:before { content: "\ea64"; }
+.ri-filter-3-line:before { content: "\ed25"; }
+.ri-user-line:before { content: "\f264"; }
+.ri-lock-line:before { content: "\eece"; }
+.ri-eye-line:before { content: "\ecb5"; }
+.ri-eye-off-line:before { content: "\ecb7"; }
+.ri-instagram-line:before { content: "\ee66"; }
+.ri-check-line:before { content: "\eb7b"; }
+.ri-close-line:before { content: "\eb99"; }
+.ri-shopping-bag-3-line:before { content: "\f116"; }
+.ri-message-2-line:before { content: "\ef44"; }
+.ri-table-line:before { content: "\f1de"; }
+.ri-bill-line:before { content: "\eac2"; }
+.ri-currency-line:before { content: "\ec08"; }
+.ri-shopping-cart-line:before { content: "\f120"; }
+.ri-refresh-line:before { content: "\f064"; }
+.ri-upload-cloud-2-line:before { content: "\f24c"; }
+.ri-upload-line:before { content: "\f250"; }
+.ri-line-chart-line:before { content: "\eeab"; }

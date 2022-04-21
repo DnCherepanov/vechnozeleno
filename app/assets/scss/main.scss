@@ -1,0 +1,34 @@
+/* Default font */
+$family-sans-serif: 'Montserrat', sans-serif;
+
+// Import Bulma's core
+@import '~bulma/sass/utilities/_all';
+
+/* Theme style (colors & sizes) */
+@import 'theme-default';
+
+// Import Bulma and Buefy styles
+@import '~bulma';
+@import '~buefy/src/scss/buefy';
+
+/* Mixins */
+@import 'mixins';
+
+/* Theme components */
+@import 'nav-bar';
+@import 'aside';
+@import 'title-bar';
+@import 'hero-bar';
+@import 'card';
+@import 'content';
+@import 'filter';
+@import 'table';
+@import 'tiles';
+@import 'form';
+@import 'main-section';
+@import 'modal';
+@import 'progress';
+@import 'badge';
+@import 'dropdown';
+@import 'misc';
+@import 'dark-mode';

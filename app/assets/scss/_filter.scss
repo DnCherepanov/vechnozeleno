@@ -1,0 +1,47 @@
+.filterSort {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: $light-border;
+  border-bottom: $light-border;
+}
+.filterSort__button {
+  margin: 10px 0;
+  text-align: center;
+}
+.filterSort__button:first-child {
+  border-right: $light-border;
+}
+.filterSort__button .select select {
+  border: 0;
+  padding: 0;
+  padding-right: 2.5em;
+  height: auto;
+  font-weight: 300;
+}
+.filterSort__button .select {
+  height: auto;
+}
+.sidebar__header a {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.sidebar__content {
+  .control {
+    padding: 0.06rem 0;
+  }
+  .b-checkbox {
+    &.checkbox.button {
+      justify-content: space-between;
+      &.is-white {
+        background-color: white !important;
+        &:hover {
+          border-color: #b5b5b5;
+        }
+        .icon {
+          color: $primary;
+        }
+      }
+    }
+  }
+}
