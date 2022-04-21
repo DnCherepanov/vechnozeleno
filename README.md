@@ -1,4 +1,4 @@
-# :deciduous_tree: POURTOI
+# :deciduous_tree: VechnoZeleno
 
 We use gitmoji as our git message convention to keep the repository history consistent.
 
@@ -20,4 +20,3 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-# vechnozeleno
