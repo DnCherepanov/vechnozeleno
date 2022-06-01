@@ -2,11 +2,11 @@ const EasyYandexS3 = require('easy-yandex-s3')
 
 const s3 = new EasyYandexS3({
   auth: {
-    accessKeyId: '4rKcCq0NwV66SigUwkB1',
-    secretAccessKey: 'koRiYKnFKbSrJ409Hz_lDO9Lkyad8ZJdCGbaLob0',
+    accessKeyId: process.env.S3_ACCESS_KEY,
+    secretAccessKey: process.env.S3_SECRET_KEY,
   },
-  Bucket: 'pourtoi', // Название бакета
-  debug: true, // Дебаг в консоли
+  Bucket: process.env.S3_BUCKET, // Название бакета
+  debug: false, // Дебаг в консоли
 })
 
 module.exports.coverAndMedia = async (req, res, next) => {

@@ -5,10 +5,10 @@ const slug = require('slug')
 
 const s3 = new EasyYandexS3({
   auth: {
-    accessKeyId: '4rKcCq0NwV66SigUwkB1',
-    secretAccessKey: 'koRiYKnFKbSrJ409Hz_lDO9Lkyad8ZJdCGbaLob0',
+    accessKeyId: process.env.S3_ACCESS_KEY,
+    secretAccessKey: process.env.S3_SECRET_KEY,
   },
-  Bucket: 'pourtoi', // Название бакета
+  Bucket: process.env.S3_BUCKET, // Название бакета
   debug: false, // Дебаг в консоли
 })
 
