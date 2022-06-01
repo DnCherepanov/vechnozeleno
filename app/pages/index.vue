@@ -104,7 +104,7 @@ export default {
   data() {
     return {
       column: 'column is-6-mobile is-3-tablet is-3-desktop',
-      limit: 9,
+      limit: 8,
     }
   },
   async fetch() {

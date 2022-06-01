@@ -58,3 +58,5 @@ export const chartOptionsMain = {
     ],
   },
 }
+
+export default {}

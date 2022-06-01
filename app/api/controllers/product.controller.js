@@ -2,13 +2,6 @@ const Product = require('../models/product.model')
 
 module.exports.create = async (req, res) => {
   try {
-    const media = []
-
-    if (req.files.media) {
-      for (let i = 0; i < req.files.media.length; i++) {
-        media.push(req.files.media[i].transforms[0].location.slice(0, -4))
-      }
-    }
     const product = new Product({
       title: req.body.title,
       category: {
@@ -26,10 +19,8 @@ module.exports.create = async (req, res) => {
       stock: req.body.stock,
       categories: req.body.categories,
       isActive: req.body.isActive,
-      cover: req.files.cover
-        ? req.files.cover[0].transforms[0].location.slice(0, -4)
-        : '/products/default-cover.svg',
-      media,
+      cover: req.body.cover[0],
+      media: req.body.media,
     })
     await product.save()
     res.status(201).json(product)
@@ -43,7 +34,7 @@ module.exports.getAll = async (req, res) => {
     const limit = Number(req.query.limit)
     const products = await Product.find()
       .select(
-        'title category netPrice grossPrice discount stock cover isActive date'
+        'title category netPrice grossPrice discount stock cover media isActive date'
       )
       .sort({ date: -1 })
       .limit(limit)
@@ -88,6 +79,8 @@ module.exports.update = async (req, res) => {
       slug: req.body.category.slug,
       path: req.body.category.path,
     },
+    size: JSON.parse(req.body.size),
+    color: JSON.parse(req.body.color),
     description: req.body.description,
     specification: req.body.specification,
     netPrice: req.body.netPrice,
@@ -95,6 +88,12 @@ module.exports.update = async (req, res) => {
     discount: req.body.discount,
     stock: req.body.stock,
     isActive: req.body.isActive,
+  }
+  if (req.body.cover.length > 0) {
+    Object.assign($set, { cover: req.body.cover[0] })
+  }
+  if (req.body.media.length > 0) {
+    Object.assign($set, { media: req.body.media })
   }
   try {
     const product = await Product.findOneAndUpdate(

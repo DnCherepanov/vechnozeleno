@@ -159,7 +159,7 @@ export default {
     },
     trashConfirm() {
       this.isModalActive = false
-      this.$store.dispatch('product/remove', this.trashObject._id)
+      this.$store.dispatch('product/remove', this.trashObject)
       this.$buefy.snackbar.open({
         message: 'Товар удален',
         actionText: '',

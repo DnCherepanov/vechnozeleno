@@ -54,10 +54,8 @@
             class="is-actions-cell"
           >
             <div class="buttons is-right">
-              <b-button
-                rounded
-                tag="nuxt-link"
-                type="is-text"
+              <nuxt-link
+                class="mr-5"
                 :to="{
                   name: 'prilavok-category-id',
                   params: {
@@ -65,15 +63,11 @@
                   },
                 }"
               >
-                <b-icon icon="playlist-edit" size="is-small" />
-              </b-button>
-              <b-button
-                rounded
-                type="is-text"
-                @click.prevent="trashModal(props.row)"
-              >
-                <b-icon icon="trash-can-outline" size="is-small" />
-              </b-button>
+                <b-icon icon="pencil-line" size="is-small" />
+              </nuxt-link>
+              <a role="button" @click.prevent="trashModal(props.row)">
+                <b-icon icon="delete-bin-line" size="is-small" />
+              </a>
             </div>
           </b-table-column>
           <template slot="detail" slot-scope="props">

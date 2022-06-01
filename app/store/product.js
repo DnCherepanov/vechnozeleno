@@ -45,6 +45,7 @@ export const actions = {
   // Создаем товар
   async create({ commit }, formData) {
     try {
+      console.log(formData)
       const fd = new FormData()
       fd.append('title', formData.title)
       fd.append('category[title]', formData.category.title)
@@ -75,10 +76,29 @@ export const actions = {
   // Обновляем товар
   async update({ commit }, formData) {
     try {
-      return await this.$axios.$put(
-        `/api/prilavok/product/${formData._id}`,
-        formData
-      )
+      const fd = new FormData()
+      fd.append('title', formData.title)
+      fd.append('category[title]', formData.category.title)
+      fd.append('category[slug]', formData.category.slug)
+      fd.append('category[path]', formData.category.path)
+      fd.append('description', formData.description)
+      fd.append('specification', formData.specification)
+      fd.append('size', JSON.stringify(formData.size))
+      fd.append('color', JSON.stringify(formData.color))
+      fd.append('netPrice', formData.netPrice)
+      fd.append('grossPrice', formData.grossPrice)
+      fd.append('discount', formData.discount)
+      fd.append('stock', formData.stock)
+      fd.append('isActive', formData.isActive)
+      if (formData.cover instanceof File) {
+        fd.append('cover', formData.cover)
+      }
+      if (formData.media[0] instanceof File) {
+        for (let i = 0; i < formData.media.length; i++) {
+          fd.append('media', formData.media[i], formData.media.name)
+        }
+      }
+      return await this.$axios.$put(`/api/prilavok/product/${formData._id}`, fd)
     } catch (e) {
       commit('setError', e, { root: true })
       throw e
@@ -113,10 +133,12 @@ export const actions = {
     }
   },
   // Запрашиваем товар для удаления
-  async remove({ commit }, id) {
+  async remove({ commit }, product) {
     try {
-      await this.$axios.$delete(`/api/prilavok/product/${id}`)
-      commit('DELETE_PRODUCT', id)
+      await this.$axios.$delete(`/api/prilavok/product/${product._id}`, {
+        data: { cover: product.cover, media: product.media },
+      })
+      commit('DELETE_PRODUCT', product._id)
     } catch (e) {
       commit('setError', e, { root: true })
       throw e

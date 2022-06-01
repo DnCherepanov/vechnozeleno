@@ -35,14 +35,14 @@
             <b-icon :icon="darkModeToggleIcon" custom-size="default" />
             <span>Светло/Темно</span>
           </a>
-          <a
-            href="https://justboil.me/bulma-admin-template/null-nuxt"
+          <nuxt-link
+            to="/prilavok/help"
             class="navbar-item has-divider is-desktop-icon-only"
             title="Помощь"
           >
             <b-icon icon="questionnaire-line" custom-size="default" />
             <span>Помощь</span>
-          </a>
+          </nuxt-link>
           <a
             class="navbar-item is-desktop-icon-only"
             title="Выйти"
