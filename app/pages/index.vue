@@ -28,7 +28,7 @@
           </template>
           <template v-else>
             <product-card
-              v-for="product in activeMainPage"
+              v-for="product in activeProducts.slice(0, 8)"
               :id="product._id"
               :key="product._id"
               :column="column"
@@ -58,7 +58,7 @@
             Следите за нами в Instagram
           </h2>
         </div>
-        <lazy-hydrate when-visible>
+        <client-only>
           <insta-feed container-class="columns is-mobile instagram">
             <template #feeds="props">
               <div class="column">
@@ -80,7 +80,7 @@
               </div>
             </template>
           </insta-feed>
-        </lazy-hydrate>
+        </client-only>
       </div>
     </section>
   </main>
@@ -88,14 +88,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import LazyHydrate from 'vue-lazy-hydration'
 import Hero from '@/components/common/Hero'
 import BannersTop from '@/components/common/BannersTop'
 import ProductCard from '@/components/common/ProductCard'
 import InstaFeed from '@/components/common/InstaFeed'
 export default {
   components: {
-    LazyHydrate,
     Hero,
     BannersTop,
     ProductCard,
@@ -131,7 +129,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('product', ['activeMainPage']),
+    ...mapGetters('product', ['activeProducts']),
   },
 }
 </script>

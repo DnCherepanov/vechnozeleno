@@ -125,7 +125,7 @@ export default {
   async fetch() {
     const { store, error } = this.$nuxt.context
     try {
-      await store.dispatch('product/getProducts')
+      await store.dispatch('product/prilavokProducts')
     } catch (e) {
       error({
         statusCode: 503,

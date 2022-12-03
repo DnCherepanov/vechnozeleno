@@ -1,26 +1,18 @@
 export const state = () => ({
   products: [],
-  productsMainPage: [],
   current: {},
 })
 
 export const getters = {
   activeProducts: (state) => {
-    return state.products.filter((product) => product.isActive)
-  },
-  activeMainPage: (state) => {
-    return state.productsMainPage.filter((product) => product.isActive)
+    return state.products
   },
 }
 
 export const mutations = {
   // Загружаем список товаров
   SET_PRODUCTS(state, products) {
-    if (products.length > 9) {
-      state.products = products
-    } else {
-      state.productsMainPage = products
-    }
+    state.products = products
   },
 
   // Загружаем товар
@@ -45,7 +37,6 @@ export const actions = {
   // Создаем товар
   async create({ commit }, formData) {
     try {
-      console.log(formData)
       const fd = new FormData()
       fd.append('title', formData.title)
       fd.append('category[title]', formData.category.title)
@@ -99,6 +90,20 @@ export const actions = {
         }
       }
       return await this.$axios.$put(`/api/prilavok/product/${formData._id}`, fd)
+    } catch (e) {
+      commit('setError', e, { root: true })
+      throw e
+    }
+  },
+  // Запрашиваем список товаров через прилавок
+  async prilavokProducts({ commit }, limit) {
+    try {
+      const products = await this.$axios.$get('/api/prilavok/products', {
+        params: {
+          limit,
+        },
+      })
+      commit('SET_PRODUCTS', products)
     } catch (e) {
       commit('setError', e, { root: true })
       throw e

@@ -12,6 +12,7 @@ router.post(
   ctr.create
 )
 
+router.get('/prilavok/products', ctr.prilavokAll)
 router.get('/products', ctr.getAll)
 router.get('/product/:id', ctr.getById)
 router.get('/search/', ctr.getSearch)

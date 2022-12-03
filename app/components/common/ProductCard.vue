@@ -21,7 +21,7 @@
             {{ title }}
             <template v-if="discount > 0">
               <b-tag class="discount" type="is-danger is-light">
-                {{ discount }}%
+                &minus;{{ discount }}%
               </b-tag>
               <p>
                 <strong> {{ price - price * (discount / 100) }} &#8381;</strong>

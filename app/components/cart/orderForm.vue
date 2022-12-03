@@ -84,7 +84,11 @@
                   </p>
                   <p class="heading">
                     <strong>
-                      {{ total >= 1500 ? 'Бесплатно' : `${delivery} &#8381;` }}
+                      {{
+                        cartTotalPrice >= 2000
+                          ? 'Бесплатно'
+                          : `${delivery} &#8381;`
+                      }}
                     </strong>
                   </p>
                 </div>
@@ -109,7 +113,7 @@
               </small>
             </b-notification>
             <b-progress
-              :value="total"
+              :value="cartTotalPrice"
               :max="minTotal"
               type="is-success"
             ></b-progress>
@@ -128,7 +132,7 @@ import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      delivery: 0,
+      delivery: 300,
       minTotal: 2000,
       customer: {
         fristName: '',

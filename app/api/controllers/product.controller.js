@@ -29,12 +29,24 @@ module.exports.create = async (req, res) => {
   }
 }
 
+module.exports.prilavokAll = async (req, res) => {
+  try {
+    const products = await Product.find()
+      .select('title netPrice grossPrice stock cover date')
+      .sort({ date: -1 })
+      .lean()
+    res.status(200).json(products)
+  } catch (e) {
+    res.status(500).json({ message: e.message })
+  }
+}
+
 module.exports.getAll = async (req, res) => {
   try {
     const limit = Number(req.query.limit)
-    const products = await Product.find()
+    const products = await Product.find({ isActive: true })
       .select(
-        'title category netPrice grossPrice discount stock cover media isActive date'
+        'title category netPrice grossPrice discount stock cover media date'
       )
       .sort({ date: -1 })
       .limit(limit)

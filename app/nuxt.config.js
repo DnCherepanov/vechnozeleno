@@ -50,6 +50,7 @@ export default {
     '@nuxtjs/stylelint-module',
     'nuxt-purgecss',
     'nuxt-font-loader',
+    '@nuxtjs/pwa',
   ],
 
   modules: [
@@ -58,7 +59,6 @@ export default {
     '@nuxtjs/sitemap',
     '@nuxtjs/robots',
     '@luxdamore/nuxt-prune-html',
-    '@nuxtjs/pwa',
     [
       'nuxt-vuex-localstorage',
       {
@@ -105,8 +105,12 @@ export default {
   },
 
   pwa: {
+    meta: {
+      title: 'Pourtoi',
+      author: 'Denis Cherepanov',
+    },
     manifest: {
-      name: 'Pourtoi',
+      name: 'Эко магазин товаров для дома в Южно-Сахалинске',
       lang: 'ru',
       theme_color: '#ffffff',
       short_name: 'Pourtoi',
