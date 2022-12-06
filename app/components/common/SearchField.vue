@@ -17,7 +17,7 @@
         </b-input>
       </b-field>
     </div>
-    <div v-show="products.length > 0" class="section search-body">
+    <div v-if="products.length > 0" class="section search-body">
       <div
         class="columns is-multiline is-mobile is-variable"
         @click="$emit('close')"
@@ -33,6 +33,11 @@
           :price="product.grossPrice"
           :discount="product.discount"
         />
+      </div>
+    </div>
+    <div v-else class="hero-body">
+      <div class="container has-text-centered">
+        <p class="subtitle">Извините, таких товаров у нас нет.</p>
       </div>
     </div>
   </section>
