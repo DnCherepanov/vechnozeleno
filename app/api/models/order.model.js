@@ -17,9 +17,11 @@ const orderSchema = new Schema({
       validate: {
         // eslint-disable-next-line object-shorthand
         validator: function (v) {
-          return /(8)\d{10}$/.test(v)
+          return /^(\+7)[\s]\([0-9]{3}\)[\s][0-9]{3}[-][0-9]{2}[-][0-9]{2}$/.test(
+            v
+          )
         },
-        message: (props) => `${props.value} некорректный нормер телефона`,
+        message: (props) => `${props.value} некорректный номер телефона`,
       },
       required: [true, 'Введите номер телефона'],
     },
@@ -30,6 +32,7 @@ const orderSchema = new Schema({
       validate: {
         // eslint-disable-next-line object-shorthand
         validator: function (v) {
+          // eslint-disable-next-line security/detect-unsafe-regex
           return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v)
         },
         message: (props) => `${props.value} некорректная почта`,

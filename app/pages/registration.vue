@@ -127,6 +127,7 @@ export default {
       } catch (e) {
         this.$buefy.snackbar.open({
           type: 'is-danger',
+          position: 'is-bottom',
           message: 'Сертификат уже зарегистрирован',
           actionText: '',
         })

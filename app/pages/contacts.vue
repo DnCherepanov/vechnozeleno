@@ -36,8 +36,9 @@
               <b-field>
                 <b-input
                   v-model="formData.email"
-                  placeholder="E-mail"
+                  placeholder="Email"
                   type="email"
+                  icon="mail-line"
                   required
                 />
               </b-field>
@@ -45,11 +46,12 @@
               <b-field>
                 <b-input
                   v-model="formData.phone"
+                  v-cleave="masks.phone"
                   type="tel"
-                  placeholder="8xxxxxxxxxx"
-                  pattern="(8)\d{10}"
-                  required
-                  validation-message="Введите телефон в формате 8xxxxxxxxxx"
+                  icon="phone-line"
+                  pattern="^(\+7)[\s]\([0-9]{3}\)[\s][0-9]{3}[-][0-9]{2}[-][0-9]{2}$"
+                  placeholder="+7 (000) 000-00-00"
+                  validation-message="Введите телефон в формате +7 (000) 000-00-00"
                 />
               </b-field>
 
@@ -74,6 +76,13 @@
                   />
                 </p>
               </b-field>
+              <p class="is-size-7 has-text-grey">
+                Нажимая на кнопку, вы даете согласие на обработку персональных
+                данных и соглашаетесь c
+                <nuxt-link to="/privacy">
+                  политикой конфиденциальности.
+                </nuxt-link>
+              </p>
             </form>
           </div>
         </div>
@@ -90,11 +99,24 @@
 </template>
 
 <script>
+import Cleave from 'cleave.js'
 import Mailbox from '@/components/contacts/Mailbox'
+const cleave = {
+  name: 'cleave',
+  bind(el, binding) {
+    const input = el.querySelector('input')
+    input._vCleave = new Cleave(input, binding.value)
+  },
+  unbind(el) {
+    const input = el.querySelector('input')
+    input._vCleave.destroy()
+  },
+}
 export default {
   components: {
     Mailbox,
   },
+  directives: { cleave },
   data() {
     return {
       success: false,
@@ -103,6 +125,15 @@ export default {
         email: '',
         phone: '',
         message: '',
+      },
+      masks: {
+        phone: {
+          delimiters: [' ', '(', ') ', '-'],
+          prefix: '+7',
+          blocks: [2, 0, 3, 3, 2, 2],
+          noImmediatePrefix: true,
+          numericOnly: true,
+        },
       },
     }
   },
@@ -128,6 +159,7 @@ export default {
         await this.$store.dispatch('forms/createContactUs', this.formData)
         this.success = true
       } catch (error) {
+        // eslint-disable-next-line security/detect-non-literal-fs-filename
         this.$buefy.toast.open({
           message: this.$store.state.error,
           position: 'is-bottom-right',

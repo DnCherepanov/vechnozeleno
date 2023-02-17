@@ -1,11 +1,57 @@
 <template>
   <main>
-    <section class="hero">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <p class="title">В скором времени тут будут интересные статьи</p>
-        </div>
+    <section class="section">
+      <div class="container">
+        <BlogArticle
+          v-for="article in articles"
+          :id="article._id"
+          :key="article._id"
+          :title="article.title"
+          :image="article.photo"
+          :content="article.content"
+          :reading-time="article.readingTime"
+          :tags="article.tags"
+        />
       </div>
     </section>
   </main>
 </template>
+
+<script>
+import { mapGetters } from 'vuex'
+import BlogArticle from '@/components/blog/BlogArticle'
+export default {
+  components: {
+    BlogArticle,
+  },
+  async fetch() {
+    await this.$store.dispatch('article/getArticles')
+  },
+  head() {
+    const title = 'Блог'
+    const description = 'Блог онлайн экомаркета Pourtoi'
+    return {
+      title,
+      meta: [
+        { hid: 'description', name: 'description', content: description },
+        { hid: 'og:title', property: 'og:title', content: title },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: description,
+        },
+      ],
+    }
+  },
+  computed: {
+    ...mapGetters('article', ['articles']),
+  },
+}
+</script>
+<style lang="scss" scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+</style>

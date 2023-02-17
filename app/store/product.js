@@ -21,7 +21,7 @@ export const mutations = {
     state.current = product
   },
 
-  // Добавляем категорию
+  // Добавляем товар
   ADD_PRODUCT(state, product) {
     state.products.push(product)
   },

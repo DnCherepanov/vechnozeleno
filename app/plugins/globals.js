@@ -22,6 +22,7 @@ import {
   Tag,
   Table,
   Input,
+  Taginput,
   Skeleton,
   ConfigProgrammatic,
 } from 'buefy'
@@ -49,6 +50,7 @@ Vue.use(Carousel)
 Vue.use(Image)
 Vue.use(Button)
 Vue.use(Tag)
+Vue.use(Taginput)
 Vue.use(Table)
 Vue.use(Input)
 Vue.use(Skeleton)
@@ -69,6 +71,7 @@ ConfigProgrammatic.setOptions({
         plus: 'add-line',
         'chevron-right': 'arrow-right-s-line',
         'chevron-left': 'arrow-left-s-line',
+        'arrow-up': 'arrow-up-line',
       },
     },
   },

@@ -33,6 +33,7 @@ const upload = multer({
   },
 }).fields([
   { name: 'cover', maxCount: 1 },
+  { name: 'photo', maxCount: 1 },
   { name: 'media', maxCount: 4 },
 ])
 
@@ -48,8 +49,11 @@ const handleErrors = (req, res, next) => {
     next()
   })
 }
+
+// Обрабатываем фотографии для товаров
 const resizeImages = async (req, res, next) => {
   req.body.cover = []
+  req.body.photo = []
   req.body.media = []
   // Загружаем массивы в бакет
   async function loadToBucket(size, file, filename, type) {
@@ -65,9 +69,9 @@ const resizeImages = async (req, res, next) => {
         buffer: resizedImgBuffer,
         name: resizedImgFilename,
       },
-      `/products/${folder}/`
+      req.body.photo ? `/articles/${folder}/` : `/products/${folder}/`
     )
-    if (size === 800) {
+    if (size === 400 || size === 500) {
       type.push(upload.Location.slice(0, -4))
     }
   }
@@ -76,18 +80,24 @@ const resizeImages = async (req, res, next) => {
     return Promise.all(
       (items ?? []).map(async (item) => {
         const filename = Date.now() + Math.round(Math.random() * 1e2)
-        await loadToBucket(800, item, filename, arrayName)
-        await loadToBucket(400, item, filename, arrayName)
-        await loadToBucket(250, item, filename, arrayName)
+        if (req.files.photo) {
+          await loadToBucket(1400, item, filename, arrayName)
+          await loadToBucket(500, item, filename, arrayName)
+        } else {
+          await loadToBucket(800, item, filename, arrayName)
+          await loadToBucket(400, item, filename, arrayName)
+          await loadToBucket(250, item, filename, arrayName)
+        }
       })
     )
   }
-
   await transformItems(req.files.media, req.body.media)
   await transformItems(req.files.cover, req.body.cover)
+  await transformItems(req.files.photo, req.body.photo)
 
   next()
 }
+
 module.exports = {
   handleErrors,
   resizeImages,

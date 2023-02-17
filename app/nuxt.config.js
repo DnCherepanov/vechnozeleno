@@ -67,8 +67,10 @@ export default {
     ],
   ],
 
-  privateRuntimeConfig: {
+  publicRuntimeConfig: {
     accessToken: process.env.INSTAGRAM_TOKEN,
+    telegaToken: process.env.TELEGA_TOKEN,
+    telegaChatID: process.env.TELEGA_CHATID,
   },
 
   fontLoader: {

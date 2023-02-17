@@ -149,6 +149,7 @@ export default {
           ? 'Категория добавлена'
           : 'Категория обновлена',
         actionText: '',
+        position: 'is-bottom',
       })
     },
   },

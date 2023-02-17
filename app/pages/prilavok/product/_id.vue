@@ -237,27 +237,6 @@ export default {
         return 'Новый товар'
       }
     },
-    heroRouterLinkTo() {
-      if (this.isItemExists) {
-        return '/prilavok/product'
-      } else {
-        return '/prilavok/products'
-      }
-    },
-    heroRouterLinkLabel() {
-      if (this.isItemExists) {
-        return 'Добавить товар'
-      } else {
-        return 'Все товары'
-      }
-    },
-    formCardTitle() {
-      if (this.isItemExists) {
-        return 'Редактировать товар'
-      } else {
-        return 'Новый товар'
-      }
-    },
     actualPrice() {
       return (
         this.form.grossPrice - this.form.grossPrice * (this.form.discount / 100)
@@ -275,6 +254,7 @@ export default {
       this.form.size.splice(index, 1)
       this.$buefy.snackbar.open({
         message: 'Опция удалена',
+        position: 'is-bottom',
         actionText: '',
       })
     },
@@ -282,6 +262,7 @@ export default {
       this.form.color.splice(index, 1)
       this.$buefy.snackbar.open({
         message: 'Опция удалена',
+        position: 'is-bottom',
         actionText: '',
       })
     },
@@ -317,6 +298,7 @@ export default {
       this.$buefy.snackbar.open({
         message: !this.isItemExists ? 'Товар добавлен' : 'Товар обновлен',
         actionText: '',
+        position: 'is-bottom',
       })
     },
   },

@@ -167,6 +167,7 @@ export default {
       this.$fetch()
       this.$buefy.snackbar.open({
         message: 'Категория удалена',
+        position: 'is-bottom',
         queue: false,
       })
     },

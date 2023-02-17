@@ -1,14 +1,14 @@
 <template>
   <main>
     <client-only>
-      <div v-if="products.length > 0">
+      <div v-if="cartProducts.length > 0">
         <section class="section">
           <div class="container is-main-section">
             <div class="card has-table has-mobile-sort-spaced">
               <div class="card-content">
                 <b-table
                   default-sort="title"
-                  :data="products"
+                  :data="cartProducts"
                   class="productTable"
                 >
                   <b-table-column
@@ -124,7 +124,7 @@ export default {
     ...mapState({
       products: (state) => state.cart.items,
     }),
-    ...mapGetters('cart', ['cartTotalPrice']),
+    ...mapGetters('cart', ['cartProducts', 'cartTotalPrice']),
     total() {
       return this.cartTotalPrice + parseInt(this.delivery)
     },
@@ -137,6 +137,7 @@ export default {
       this.$store.dispatch('cart/deleteItem', id)
       this.$buefy.snackbar.open({
         message: 'Товар удален',
+        position: 'is-bottom',
         actionText: '',
       })
     },
@@ -144,6 +145,7 @@ export default {
       this.$store.dispatch('cart/clearCart')
       this.$buefy.snackbar.open({
         message: 'Корзина очищена',
+        position: 'is-bottom',
         actionText: '',
       })
     },

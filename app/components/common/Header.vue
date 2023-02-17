@@ -1,7 +1,7 @@
 <template>
   <header class="section pt-2 pb-0">
     <div class="navbar">
-      <div class="navbar__left">
+      <div class="navbar__left showUp">
         <a
           class="navbar__burger mr-4 is-hidden-desktop"
           :class="{ active: isBurgerOpen }"
@@ -17,12 +17,13 @@
           <b-icon icon="search-line" />
         </a>
       </div>
+
       <div class="navbar__logo">
         <NuxtLink to="/">
           <Logo />
         </NuxtLink>
       </div>
-      <div class="navbar__right">
+      <div class="navbar__right showUp">
         <client-only>
           <header-cart />
         </client-only>
@@ -86,6 +87,7 @@ export default {
   },
   methods: {
     cardModal() {
+      // eslint-disable-next-line security/detect-non-literal-fs-filename
       this.$buefy.modal.open({
         parent: this,
         customClass: 'search-form',
@@ -98,6 +100,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.showUp {
+  animation: ease 0.5s showUp;
+  animation-duration: 2000ms;
+}
 header .navbar {
   background: transparent;
   display: grid;
@@ -127,6 +133,8 @@ header .navbar {
     }
     span + span {
       margin-top: 5px;
+      animation-delay: 5ms;
+      opacity: 1;
     }
     span:nth-child(1) {
       animation: ease 0.5s top-back forwards;
@@ -180,6 +188,18 @@ header .navbar {
         height: 0.08rem;
       }
     }
+  }
+}
+
+@keyframes showUp {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 

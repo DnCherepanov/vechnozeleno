@@ -6,13 +6,13 @@
       @confirm="trashConfirm"
       @cancel="trashCancel"
     />
-    <hero-bar> Товары </hero-bar>
+    <hero-bar> Записи в блоге </hero-bar>
     <b-button
       type="is-primary"
       rounded
       class="fixedButton"
       tag="nuxt-link"
-      to="/prilavok/product"
+      to="/prilavok/blog/new"
       icon-right="add-line"
     />
     <section class="section is-main-section">
@@ -24,56 +24,37 @@
             :per-page="perPage"
             :striped="true"
             :hoverable="true"
-            default-sort="title"
-            :data="products"
+            default-sort="date"
+            default-sort-direction="desc"
+            :data="articles"
           >
             <b-table-column
               v-slot="props"
-              class="has-no-head-mobile is-image-cell"
-            >
-              <div class="image">
-                <b-image
-                  :src="`${props.row.cover}-250`"
-                  src-fallback="/products/default-cover.svg"
-                  alt="Фото товара"
-                  ratio="1by1"
-                  rounded
-                />
-              </div>
-            </b-table-column>
-            <b-table-column
-              v-slot="props"
-              label="Название"
+              label="Заголовок"
               field="title"
               sortable
             >
-              <NuxtLink :to="`/prilavok/product/${props.row._id}`">
+              <NuxtLink :to="`/prilavok/blog/${props.row._id}`">
                 {{ props.row.title }}
               </NuxtLink>
             </b-table-column>
             <b-table-column
               v-slot="props"
-              label="Закупка"
-              field="netPrice"
+              label="Создана"
+              field="date"
               sortable
             >
-              {{ props.row.netPrice }} руб.
+              {{ new Date(props.row.date).toLocaleDateString() }}
             </b-table-column>
-            <b-table-column
-              v-slot="props"
-              label="Продажа"
-              field="grossPrice"
-              sortable
-            >
-              {{ props.row.grossPrice }} руб.
-            </b-table-column>
-            <b-table-column
-              v-slot="props"
-              label="Остаток"
-              field="stock"
-              sortable
-            >
-              {{ props.row.stock }} шт.
+            <b-table-column v-slot="props" label="Тэги" field="tags">
+              <span
+                v-for="tag in props.row.tags"
+                :key="tag.id"
+                class="tag is-info is-light"
+                style="margin-left: 5px"
+              >
+                {{ tag }}
+              </span>
             </b-table-column>
             <b-table-column
               v-slot="props"
@@ -85,7 +66,7 @@
                 <nuxt-link
                   class="mr-5"
                   :to="{
-                    name: 'prilavok-product-id',
+                    name: 'prilavok-blog-id',
                     params: { id: props.row._id },
                   }"
                 >
@@ -125,7 +106,7 @@ export default {
   async fetch() {
     const { store, error } = this.$nuxt.context
     try {
-      await store.dispatch('product/prilavokProducts')
+      await store.dispatch('article/getArticles')
     } catch (e) {
       error({
         statusCode: 503,
@@ -135,15 +116,15 @@ export default {
   },
   head() {
     return {
-      title: 'Товары — магазин экотоваров PourToi',
+      title: 'Статьи — магазин экотоваров PourToi',
     }
   },
   computed: {
     ...mapState({
-      products: (state) => state.product.products,
+      articles: (state) => state.article.articles,
     }),
     titleStack() {
-      return ['Товары']
+      return ['Статьи']
     },
     trashObjectName() {
       if (this.trashObject) {
@@ -159,7 +140,8 @@ export default {
     },
     trashConfirm() {
       this.isModalActive = false
-      this.$store.dispatch('product/remove', this.trashObject)
+      this.$store.dispatch('article/remove', this.trashObject)
+      // eslint-disable-next-line security/detect-non-literal-fs-filename
       this.$buefy.snackbar.open({
         message: 'Товар удален',
         position: 'is-bottom',
@@ -172,8 +154,5 @@ export default {
   },
 }
 </script>
-<style lang="scss" scoped>
-.card {
-  border: none;
-}
-</style>
+
+<!-- <style lang="scss" scoped></style> -->

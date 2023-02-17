@@ -33,12 +33,14 @@ const productRoutes = require('./routes/product.routes')
 const categoryRoutes = require('./routes/category.routes')
 const orderRoutes = require('./routes/order.routes')
 const formsRoutes = require('./routes/forms.routes')
+const articlesRoutes = require('./routes/article.routes')
 
 app.use(authRoutes)
 app.use(productRoutes)
 app.use(categoryRoutes)
 app.use(orderRoutes)
 app.use(formsRoutes)
+app.use(articlesRoutes)
 
 module.exports = {
   path: '/api',

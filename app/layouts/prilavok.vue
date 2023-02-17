@@ -58,7 +58,7 @@ export default {
             updateMark: this.orders.some((order) => order.status === 'Новый'),
           },
           {
-            href: '/',
+            href: '/prilavok/blog',
             label: 'Статьи',
             icon: 'newspaper-line',
           },

@@ -202,7 +202,7 @@ export default {
 
   computed: {
     total() {
-      return this.form.totalPrice + this.form.totalPrice
+      return this.form.totalPrice + this.form.delivery
     },
     heroTitle() {
       return 'Заказ'
@@ -212,24 +212,30 @@ export default {
     deleteItem(id) {
       const index = this.form.cart.findIndex((item) => item._id === id)
       this.form.cart.splice(index, 1)
+      // eslint-disable-next-line security/detect-non-literal-fs-filename
       this.$buefy.snackbar.open({
         message: 'Товар удален',
+        position: 'is-bottom',
         actionText: '',
       })
     },
     onSubmit() {
       this.$store.dispatch('order/update', this.form)
       this.$router.go(-1)
+      // eslint-disable-next-line security/detect-non-literal-fs-filename
       this.$buefy.snackbar.open({
         message: 'Заказ обновлен',
+        position: 'is-bottom',
         actionText: '',
       })
     },
     cancelOrder(id) {
       this.$store.dispatch('order/remove', id)
       this.$router.go(-1)
+      // eslint-disable-next-line security/detect-non-literal-fs-filename
       this.$buefy.snackbar.open({
         message: 'Заказ отменен',
+        position: 'is-bottom',
         queue: false,
       })
     },

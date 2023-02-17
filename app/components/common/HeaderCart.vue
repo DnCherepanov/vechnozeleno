@@ -12,7 +12,7 @@
       <b-dropdown-item v-if="!products.length" :focusable="false" custom>
         <b-image
           class="no-image my-4"
-          src="/noImage.png"
+          src="/noImage.webp"
           webp-fallback=".png"
         />
         <p class="subtitle is-5 has-text-centered">Ваша корзина пуста</p>

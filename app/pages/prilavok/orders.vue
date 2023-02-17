@@ -15,7 +15,6 @@
             :per-page="perPage"
             :striped="true"
             :hoverable="true"
-            default-sort="date"
             :data="orders"
           >
             <b-table-column v-slot="props" label="№" field="id">
@@ -131,6 +130,7 @@ export default {
       this.$store.dispatch('order/remove', this.trashObject._id)
       this.$buefy.snackbar.open({
         message: 'Заказ удален',
+        position: 'is-bottom',
         queue: false,
       })
     },

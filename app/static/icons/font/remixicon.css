@@ -8,12 +8,12 @@
 
 @font-face {
     font-family: "remixicon";
-    src: url('remixicon.eot?t=1619663469482'); /* IE9*/
-    src: url('remixicon.eot?t=1619663469482#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url("remixicon.woff2?t=1619663469482") format("woff2"),
-    url("remixicon.woff?t=1619663469482") format("woff"),
-    url('remixicon.ttf?t=1619663469482') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-    url('remixicon.svg?t=1619663469482#remixicon') format('svg'); /* iOS 4.1- */
+    src: url('remixicon.eot?t=1676010316098'); /* IE9*/
+    src: url('remixicon.eot?t=1676010316098#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url("remixicon.woff2?t=1676010316098") format("woff2"),
+    url("remixicon.woff?t=1676010316098") format("woff"),
+    url('remixicon.ttf?t=1676010316098') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('remixicon.svg?t=1676010316098#remixicon') format('svg'); /* iOS 4.1- */
     font-display: swap;
 }
 
@@ -53,7 +53,6 @@
 .ri-arrow-go-back-line:before { content: "\ea58"; }
 .ri-moon-clear-line:before { content: "\ef6f"; }
 .ri-sun-fill:before { content: "\f1bc"; }
-.ri-folders-line:before { content: "\ed8a"; }
 .ri-bar-chart-2-line:before { content: "\ea96"; }
 .ri-search-line:before { content: "\f0d1"; }
 .ri-store-2-line:before { content: "\f1a5"; }
@@ -64,6 +63,9 @@
 .ri-delete-bin-line:before { content: "\ec2a"; }
 .ri-newspaper-line:before { content: "\ef8f"; }
 .ri-arrow-left-line:before { content: "\ea60"; }
+.ri-arrow-right-line:before { content: "\ea6c"; }
+.ri-arrow-up-line:before { content: "\ea76"; }
+.ri-arrow-down-line:before { content: "\ea4c"; }
 .ri-questionnaire-line:before { content: "\f048"; }
 .ri-logout-box-r-line:before { content: "\eeda"; }
 .ri-pencil-line:before { content: "\efe0"; }
@@ -87,6 +89,12 @@
 .ri-currency-line:before { content: "\ec08"; }
 .ri-shopping-cart-line:before { content: "\f120"; }
 .ri-refresh-line:before { content: "\f064"; }
-.ri-upload-cloud-2-line:before { content: "\f24c"; }
 .ri-upload-line:before { content: "\f250"; }
+.ri-upload-cloud-line:before { content: "\f24e"; }
 .ri-line-chart-line:before { content: "\eeab"; }
+.ri-mail-line:before { content: "\eef6"; }
+.ri-phone-line:before { content: "\efec"; }
+.ri-bookmark-line:before { content: "\eae5"; }
+.ri-link:before { content: "\eeb2"; }
+.ri-folders-line:before { content: "\ed8a"; }
+.ri-price-tag-3-fill:before { content: "\f022"; }

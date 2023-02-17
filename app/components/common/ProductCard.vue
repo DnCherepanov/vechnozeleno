@@ -25,11 +25,8 @@
               </b-tag>
               <p>
                 <strong> {{ price - price * (discount / 100) }} &#8381;</strong>
-                <span
-                  style="text-decoration: line-through"
-                  class="has-text-grey is-size-7"
-                >
-                  {{ price }} &#8381;
+                <span class="strikethrough has-text-grey is-size-7">
+                  &nbsp;{{ price }} &#8381;&nbsp;
                 </span>
               </p>
             </template>
@@ -93,5 +90,8 @@ export default {
   height: 100%;
   position: absolute;
   top: 0;
+}
+.strikethrough::before {
+  border-top: 1px solid;
 }
 </style>

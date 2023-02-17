@@ -43,6 +43,15 @@
       >
         <b-icon icon="list-ordered" />
       </a>
+
+      <a
+        role="button"
+        :class="{ 'is-active': editor.isActive('link') }"
+        @click.prevent="toggleLink"
+      >
+        <b-icon icon="link" />
+      </a>
+
       <a
         role="button"
         :class="{ 'is-active': editor.isActive('blockquote') }"
@@ -83,6 +92,7 @@ import BulletList from '@tiptap/extension-bullet-list'
 import ListItem from '@tiptap/extension-list-item'
 import OrderedList from '@tiptap/extension-ordered-list'
 import Blockquote from '@tiptap/extension-blockquote'
+import Link from '@tiptap/extension-link'
 import HorizontalRule from '@tiptap/extension-horizontal-rule'
 import History from '@tiptap/extension-history'
 
@@ -99,6 +109,7 @@ export default {
   data() {
     return {
       editor: null,
+      url: 'pourtoi.ru',
     }
   },
   watch: {
@@ -125,6 +136,9 @@ export default {
         ListItem,
         OrderedList,
         Blockquote,
+        Link.configure({
+          openOnClick: true,
+        }),
         HorizontalRule,
         History,
       ],
@@ -136,6 +150,51 @@ export default {
 
   beforeDestroy() {
     this.editor.destroy()
+  },
+
+  methods: {
+    toggleLink() {
+      if (this.editor.getAttributes('link').href === undefined) {
+        const href = window.prompt('Введите ссылку:')
+        if (href) {
+          this.editor
+            .chain()
+            .focus()
+            .toggleLink({
+              href,
+              target: '_blank',
+            })
+            .run()
+        }
+      } else {
+        this.editor.commands.unsetLink()
+      }
+    },
+
+    // setLink() {
+    //   const previousUrl = this.editor.getAttributes('link').href
+    //   const url = window.prompt('URL', previousUrl)
+
+    //   // cancelled
+    //   if (url === null) {
+    //     return
+    //   }
+
+    //   // empty
+    //   if (url === '') {
+    //     this.editor.chain().focus().extendMarkRange('link').unsetLink().run()
+
+    //     return
+    //   }
+
+    //   // update link
+    //   this.editor
+    //     .chain()
+    //     .focus()
+    //     .extendMarkRange('link')
+    //     .setLink({ href: url })
+    //     .run()
+    // },
   },
 }
 </script>

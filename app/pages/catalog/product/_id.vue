@@ -5,38 +5,61 @@
       <div class="container">
         <div class="columns is-variable is-5">
           <div class="column is-5">
-            <b-carousel
-              :autoplay="false"
-              indicator-custom
-              :indicator-inside="false"
-              :arrow="false"
-              :repeat="false"
-            >
-              <b-carousel-item v-for="(item, i) in product.media" :key="i">
-                <b-image
-                  :src="`${product.media[i]}-800`"
-                  src-fallback="/products/default-cover.svg"
-                  :placeholder="`${product.media[i]}-250?blur=10`"
-                  ratio="1by1"
-                />
-              </b-carousel-item>
-              <template #indicators="props">
-                <b-image
-                  class="al image"
-                  :src="`${product.media[props.i]}-250`"
-                  src-fallback="/products/default-cover.svg"
-                  :placeholder="`${product.media[props.i]}-250?blur=10`"
-                  ratio="1by1"
-                />
-              </template>
-            </b-carousel>
+            <div class="is-relative">
+              <b-tag
+                v-if="product.discount > 0"
+                class="discount"
+                type="is-danger is-light"
+              >
+                &minus;{{ product.discount }}%
+              </b-tag>
+              <b-carousel
+                :autoplay="false"
+                indicator-custom
+                :indicator-inside="false"
+                :arrow="false"
+                :repeat="false"
+              >
+                <b-carousel-item v-for="(item, i) in product.media" :key="i">
+                  <b-image
+                    :src="`${product.media[i]}-800`"
+                    src-fallback="/products/default-cover.svg"
+                    :placeholder="`${product.media[i]}-250?blur=10`"
+                    ratio="1by1"
+                  />
+                </b-carousel-item>
+                <template #indicators="props">
+                  <b-image
+                    class="al image"
+                    :src="`${product.media[props.i]}-250`"
+                    src-fallback="/products/default-cover.svg"
+                    :placeholder="`${product.media[props.i]}-250?blur=10`"
+                    ratio="1by1"
+                  />
+                </template>
+              </b-carousel>
+            </div>
           </div>
           <div class="column is-6">
             <div class="block">
               <h1 class="title">{{ product.title }}</h1>
-              <h2 class="subtitle is-2 has-text-primary">
-                {{ product.grossPrice }} &#8381;
-              </h2>
+              <template v-if="product.discount > 0">
+                <h2 class="subtitle is-2 has-text-primary">
+                  {{
+                    product.grossPrice -
+                    product.grossPrice * (product.discount / 100)
+                  }}
+                  &#8381;
+                  <span class="strikethrough has-text-grey is-size-4">
+                    &nbsp;{{ product.grossPrice }} &#8381;&nbsp;
+                  </span>
+                </h2>
+              </template>
+              <template v-else>
+                <h2 class="subtitle is-2 has-text-primary">
+                  {{ product.grossPrice }} &#8381;
+                </h2>
+              </template>
             </div>
 
             <div class="content">
@@ -145,7 +168,7 @@ export default {
       productStock: 1,
       loading: false,
       al: {
-        hasGrayscale: true,
+        hasGrayscale: false,
         itemsToShow: 4,
         itemsToList: 0,
         arrow: false,
@@ -195,13 +218,16 @@ export default {
         title: this.product.title,
         option: this.productOption,
         price: this.product.grossPrice,
+        discount: this.product.discount,
         cover: this.product.cover,
         quantity: this.quantity,
         stock: this.productStock,
       }
       this.$store.dispatch('cart/addProductToCart', product)
+      // eslint-disable-next-line security/detect-non-literal-fs-filename
       this.$buefy.snackbar.open({
         message: 'Товар добавлен в корзину',
+        position: 'is-bottom',
         actionText: '',
       })
     },
@@ -209,14 +235,6 @@ export default {
 }
 </script>
 <style>
-.is-active .al img {
-  border: 1px solid #fff;
-  filter: grayscale(0%);
-}
-.al img {
-  border: 1px solid transparent;
-  filter: grayscale(100%);
-}
 .carousel .carousel-indicator {
   padding: 0.5rem 0;
 }

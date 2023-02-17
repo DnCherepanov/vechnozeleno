@@ -1,6 +1,17 @@
 export const state = () => ({
   orders: [],
 })
+export const getters = {
+  sold: ({ orders }) => {
+    return orders.length
+  },
+  total: ({ orders }) => {
+    return orders.reduce((acc, { totalPrice }) => acc + totalPrice, 0)
+  },
+  average: (state, getters) => {
+    return Math.floor(getters.total / getters.sold)
+  },
+}
 export const actions = {
   // Создаем заказ
   async create({ commit }, formData) {

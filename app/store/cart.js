@@ -4,17 +4,8 @@ export const state = () => ({
 })
 
 export const getters = {
-  cartProducts: (state, rootState) => {
-    return state.items.map(({ id, stock }) => {
-      const product = rootState.product.products.find(
-        (product) => product._id === id
-      )
-      return {
-        title: product.title,
-        price: product.price,
-        stock,
-      }
-    })
+  cartProducts: (state) => {
+    return state.items
   },
 
   cartTotalPrice: (state) => {
@@ -34,6 +25,7 @@ export const actions = {
           id: product.id,
           title: product.title,
           price: product.price,
+          discount: product.discount,
           cover: product.cover,
           option: product.option,
           quantity: product.quantity,
@@ -61,12 +53,14 @@ export const actions = {
 export const mutations = {
   PUSH_PRODUCT_TO_CART(
     state,
-    { id, title, price, cover, option, quantity, stock }
+    { id, title, price, discount, cover, option, quantity, stock }
   ) {
+    price = price - price * (discount / 100)
     state.items.push({
       id,
       title,
       price,
+      discount,
       cover,
       option,
       quantity,

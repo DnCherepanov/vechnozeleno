@@ -22,6 +22,6 @@ router.put(
   upload.resizeImages,
   ctr.update
 )
-router.delete('/prilavok/product/:id', remove.coverAndMedia, ctr.delete)
+router.delete('/prilavok/product/:id', remove.images, ctr.delete)
 
 module.exports = router

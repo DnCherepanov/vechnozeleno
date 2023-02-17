@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import * as chartConfig from '@/components/prilavok/Charts/chart.config'
 import TitleBar from '@/components/prilavok/TitleBar'
 import Tiles from '@/components/prilavok/Tiles'
@@ -91,21 +92,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('order', ['total', 'sold', 'average']),
     titleStack() {
       return ['Аналитика']
-    },
-    sold() {
-      return this.$store.state.order.orders.length
-    },
-    total() {
-      let sum = 0
-      for (let i = 0; i < this.$store.state.order.orders.length; i++) {
-        sum += this.$store.state.order.orders[i].totalPrice
-      }
-      return sum
-    },
-    average() {
-      return Math.floor(this.total / this.sold)
     },
   },
   mounted() {

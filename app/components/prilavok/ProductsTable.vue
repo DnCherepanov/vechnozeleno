@@ -125,6 +125,7 @@ export default {
       this.products = this.dataUrl.filter((i) => i._id !== this.trashObject._id)
       this.$buefy.snackbar.open({
         message: 'Товар удален',
+        position: 'is-bottom',
         queue: false,
       })
     },

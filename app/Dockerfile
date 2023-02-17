@@ -1,7 +1,5 @@
 FROM node:lts-alpine
 
-RUN apt-get update
-
 ENV APP_ROOT /src
 
 WORKDIR ${APP_ROOT}
