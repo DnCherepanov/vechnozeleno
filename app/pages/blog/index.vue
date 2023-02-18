@@ -54,4 +54,7 @@ export default {
   flex-direction: column;
   gap: 5rem;
 }
+.media-content {
+  overflow: hidden;
+}
 </style>
