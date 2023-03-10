@@ -8,7 +8,7 @@
           :key="article._id"
           :title="article.title"
           :image="article.photo"
-          :content="article.content"
+          :intro="article.intro"
           :reading-time="article.readingTime"
           :tags="article.tags"
         />

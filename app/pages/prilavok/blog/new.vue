@@ -10,7 +10,14 @@
           <b-field class="pt-2">
             <file-picker v-model="form.photo" />
           </b-field>
-          <b-field class="pt-2" label="Содержание">
+          <b-field label="Коротко">
+            <b-input
+              v-model="form.intro"
+              maxlength="200"
+              type="textarea"
+            ></b-input>
+          </b-field>
+          <b-field class="pt-2" label="Полный текст">
             <editor v-model="form.content" />
           </b-field>
           <b-field label="#Тэги">
@@ -70,6 +77,7 @@ export default {
     clearForm() {
       this.form = {
         title: '',
+        intro: '',
         content: '',
         photo: '',
         tags: '',

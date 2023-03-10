@@ -15,26 +15,25 @@ module.exports.images = async (req, res, next) => {
 
   if (req.body.cover) {
     const cover = req.body.cover.replace(/^.+net/g, '')
-    await sizesProduct.forEach(async (size) => {
+    for (const size of sizesProduct) {
       await s3.Remove(`${cover}-${size}`)
-    })
+    }
   }
 
   if (req.body.photo) {
     const photo = req.body.photo.replace(/^.+net/g, '')
-    await sizesArticle.forEach(async (size) => {
+    for (const size of sizesArticle) {
       await s3.Remove(`${photo}-${size}`)
-    })
+    }
   }
 
   if (req.body.media) {
     const media = req.body.media.map((item) => item.replace(/^.+net/g, ''))
-    await media.forEach(async (item) => {
-      for (let i = 0; i < sizesProduct.length; ++i) {
-        // eslint-disable-next-line security/detect-object-injection
-        await s3.Remove(`${item}-${sizesProduct[i]}`)
+    for (const item of media) {
+      for (const size of sizesProduct) {
+        await s3.Remove(`${item}-${size}`)
       }
-    })
+    }
   }
   next()
 }
