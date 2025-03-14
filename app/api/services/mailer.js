@@ -3,7 +3,6 @@ const nodemailer = require('nodemailer')
 const handlebars = require('handlebars')
 const hbs = require('nodemailer-express-handlebars')
 
-// Конфигурация почтового сервера
 const defaultConfig = {
   host: process.env.EMAIL_SMTP,
   port: 465,
@@ -11,9 +10,6 @@ const defaultConfig = {
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASSWORD,
-  },
-  tls: {
-    rejectUnauthorized: false,
   },
 }
 

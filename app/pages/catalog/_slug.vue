@@ -40,7 +40,6 @@
 <script>
 import ProductCard from '@/components/common/ProductCard'
 import ProductsFilter from '@/components/common/ProductsFilter'
-
 export default {
   components: {
     ProductCard,
@@ -50,7 +49,7 @@ export default {
     return {
       column: 'column is-6-mobile is-3-tablet is-3-desktop',
       activeProducts: [],
-      sortBy: '',
+      sortBy: null,
       filterBy: [],
     }
   },
@@ -58,7 +57,9 @@ export default {
     const products = await this.$axios.$get(
       `/api/category/${this.$route.params.slug}`
     )
-    this.activeProducts = products
+    const activeProducts = products.filter((product) => product.isActive)
+
+    this.activeProducts = this.activeProducts.concat(activeProducts)
   },
   head() {
     const { params } = this.$nuxt.context
@@ -93,7 +94,7 @@ export default {
       }
       if (this.sortBy === 'new') {
         products.sort((a, b) => {
-          return new Date(b.date) - new Date(a.date)
+          return new Date(a.date) - new Date(b.date)
         })
       }
       const filtered = products.filter((product) =>

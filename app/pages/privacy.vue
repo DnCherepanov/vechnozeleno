@@ -553,12 +553,6 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
-.content ul {
-  margin-left: 0;
-  ul {
-    margin-left: 1rem;
-  }
-}
 ul {
   list-style: none;
   ul {

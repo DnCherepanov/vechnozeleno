@@ -43,16 +43,11 @@ module.exports.getById = async (req, res) => {
 
 module.exports.getBySlug = async (req, res) => {
   try {
+    const category = await Category.findOne({ slug: req.params.slug })
+    const regex = new RegExp('^' + category.path)
     const products = await Product.find({
-      isActive: true,
-      // eslint-disable-next-line security/detect-non-literal-regexp
-      'category.path': { $regex: new RegExp('^/' + req.params.slug) },
+      'category.path': { $regex: regex },
     })
-      .select(
-        'title category netPrice grossPrice discount stock cover media date'
-      )
-      .sort({ date: -1 })
-      .lean()
     res.json(products)
   } catch (e) {
     res.status(500).json({ message: e.message })

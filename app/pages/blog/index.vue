@@ -8,7 +8,7 @@
           :key="article._id"
           :title="article.title"
           :image="article.photo"
-          :intro="article.intro"
+          :content="article.content"
           :reading-time="article.readingTime"
           :tags="article.tags"
         />
@@ -53,8 +53,5 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 5rem;
-}
-.media-content {
-  overflow: hidden;
 }
 </style>

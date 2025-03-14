@@ -13,7 +13,7 @@
           <div class="column is-7">
             <form @submit.prevent="onSubmit">
               <div class="content is-normal">
-                <h2>Регистрация сертификата</h2>
+                <h2>Регистрация</h2>
                 <p>
                   После регистрации вы получите скидку 1000 рублей на ваш заказ.
                 </p>
@@ -38,14 +38,14 @@
                   />
                 </b-field>
               </b-field>
-              <b-field label="Номер телефона">
+              <b-field label="Номер мобильного телефона">
                 <b-input
                   v-model="formData.phone"
-                  v-cleave="masks.phone"
                   type="tel"
-                  icon="phone-line"
-                  placeholder="+7 (000) 000-00-00"
-                  validation-message="Введите телефон в формате +7 (000) 000-00-00"
+                  pattern="8[0-9]{10}"
+                  placeholder="8xxxxxxxxxx"
+                  required
+                  validation-message="Введите телефон в формате 8xxxxxxxxxx"
                 />
               </b-field>
               <b-field
@@ -60,7 +60,7 @@
                     type="is-dark"
                     outlined
                     expanded
-                    label="Зарегистрировать"
+                    label="Зарегистрироваться"
                     native-type="submit"
                   />
                 </p>
@@ -85,21 +85,8 @@
 </template>
 
 <script>
-import Cleave from 'cleave.js'
 import Logo from '@/components/common/Logo'
-const cleave = {
-  name: 'cleave',
-  bind(el, binding) {
-    const input = el.querySelector('input')
-    input._vCleave = new Cleave(input, binding.value)
-  },
-  unbind(el) {
-    const input = el.querySelector('input')
-    input._vCleave.destroy()
-  },
-}
 export default {
-  directives: { cleave },
   components: { Logo },
   layout: 'empty',
   data() {
@@ -110,15 +97,6 @@ export default {
         lastName: '',
         phone: '',
         certificate: '',
-      },
-      masks: {
-        phone: {
-          delimiters: [' ', '(', ') ', '-'],
-          prefix: '+7',
-          blocks: [2, 0, 3, 3, 2, 2],
-          noImmediatePrefix: true,
-          numericOnly: true,
-        },
       },
     }
   },

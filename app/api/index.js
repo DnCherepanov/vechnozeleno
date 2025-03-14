@@ -7,7 +7,6 @@ const rateLimit = require('express-rate-limit')
 const db = require('./db')
 
 const app = express()
-app.set('trust proxy', 1)
 
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function callback() {

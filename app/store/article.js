@@ -4,8 +4,12 @@ export const state = () => ({
 })
 
 export const getters = {
-  articles: (state) => state.articles,
-  article: (state) => state.current,
+  articles: (state) => {
+    return state.articles
+  },
+  article: (state) => {
+    return state.current
+  },
 }
 
 export const mutations = {
@@ -22,7 +26,8 @@ export const mutations = {
   },
 
   DELETE_ARTICLE(state, id) {
-    state.articles = state.articles.filter((article) => article._id !== id)
+    const index = state.articles.findIndex((a) => a._id === id)
+    state.articles.splice(index, 1)
   },
 }
 
@@ -47,7 +52,6 @@ export const actions = {
       const fd = new FormData()
       fd.append('chat_id', this.$config.telegaChatID)
       fd.append('title', data.title)
-      fd.append('intro', data.intro)
       fd.append('content', data.content)
       fd.append('readingTime', time)
       if (data.tags) {
@@ -60,14 +64,14 @@ export const actions = {
       // Отправляем сообщение в телеграм с фотографией
       if (data.photo) {
         fd.append('photo', data.photo)
-        await this.$axios.post(URI_API_PHOTO, fd, {
+        this.$axios.post(URI_API_PHOTO, fd, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         })
       } else {
         // Отправляем сообщение в телеграм без фотографии
-        await this.$axios.post(URI_API_TEXT, {
+        this.$axios.post(URI_API_TEXT, {
           chat_id: this.$config.telegaChatID,
           parse_mode: 'HTML',
           text: textForTelega,

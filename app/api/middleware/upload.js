@@ -13,21 +13,12 @@ const s3 = new EasyYandexS3({
 })
 
 const storage = multer.memoryStorage()
-// const fileFilter = (req, file, cb) => {
-//   if (
-//     file.mimetype === 'image/jpeg' ||
-//     file.mimetype === 'image/jpg' ||
-//     file.mimetype === 'image/png'
-//   ) {
-//     cb(null, true)
-//   } else {
-//     cb(null, false)
-//   }
-// }
-// Added an array of allowed MIME types and replaced the series of if statements with an includes method call in `file
 const fileFilter = (req, file, cb) => {
-  const allowedMimeTypes = ['image/jpeg', 'image/jpg', 'image/png']
-  if (allowedMimeTypes.includes(file.mimetype)) {
+  if (
+    file.mimetype === 'image/jpeg' ||
+    file.mimetype === 'image/jpg' ||
+    file.mimetype === 'image/png'
+  ) {
     cb(null, true)
   } else {
     cb(null, false)

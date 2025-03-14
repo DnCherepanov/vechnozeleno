@@ -62,6 +62,7 @@
                 v-cleave="masks.phone"
                 type="tel"
                 icon="phone-line"
+                pattern="^(\+7)[\s]\([0-9]{3}\)[\s][0-9]{3}[-][0-9]{2}[-][0-9]{2}$"
                 placeholder="+7 (000) 000-00-00"
                 validation-message="Введите телефон в формате +7 (000) 000-00-00"
               />

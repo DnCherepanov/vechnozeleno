@@ -24,11 +24,7 @@
           <nuxt-link :to="{ name: 'blog-id', params: { id } }">
             <h3>{{ title }}</h3>
           </nuxt-link>
-          <div class="block">
-            <p>
-              {{ intro }}
-            </p>
-          </div>
+          <div class="block" v-html="content"></div>
         </div>
 
         <nav class="level is-mobile">
@@ -77,7 +73,7 @@ export default {
       type: String,
       required: true,
     },
-    intro: {
+    content: {
       type: String,
       required: true,
     },
